@@ -36,7 +36,7 @@ namespace Day03
         [Test]
         public void FirstTask()
         {
-            var parsedInput = Stubs.FirstTaskTestInput.Select(a => Convert.ToInt32(a, 2)).ToList();
+            var parsedInput = Stubs.Day03TestInput.Select(a => Convert.ToInt32(a, 2)).ToList();
             var powerConsumption = Program.RunFirstTask(parsedInput, 5);
             Assert.That(powerConsumption, Is.EqualTo(198));
         }
@@ -44,7 +44,7 @@ namespace Day03
         [Test]
         public void SecondTask()
         {
-            var parsedInput = Stubs.FirstTaskTestInput.Select(a => Convert.ToInt32(a, 2)).ToList();
+            var parsedInput = Stubs.Day03TestInput.Select(a => Convert.ToInt32(a, 2)).ToList();
             var lifeSupportingRating = Program.RunSecondTask(parsedInput, 5);
             Assert.That(lifeSupportingRating, Is.EqualTo(230));
         }

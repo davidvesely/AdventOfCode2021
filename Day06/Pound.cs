@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,42 +9,40 @@ namespace Day06
 {
     public class Pound
     {
-        private readonly List<int> fishes = new(6000);
-
-        private static readonly object locking = new ();
+        private readonly BigInteger[] fishes = new BigInteger[9];
 
         public Pound(string input)
         {
-            fishes.AddRange(input.Split(',').Select(int.Parse));
+            foreach (var number in input.Split(',').Select(int.Parse))
+            {
+                fishes[number]++;
+            }
         }
 
-        public int Count => fishes.Count;
+        public BigInteger Count
+        {
+            get
+            {
+                BigInteger total = 0;
+                foreach (BigInteger n in fishes)
+                    total += n;
+                return total;
+            }
+        }
 
         public void Iterate()
         {
-            var zeroCounter = 0;
-
-            Parallel.For(0, fishes.Count, i =>
-            {
-                if (fishes[i] > 0)
-                    fishes[i]--;
-                else
-                {
-                    fishes[i] = 6;
-                    lock (locking)
-                    {
-                        zeroCounter++;
-                    }
-                }
-            });
-
-            // Add the new fishes with 8
-            fishes.AddRange(Enumerable.Repeat(8, zeroCounter).ToArray());
-        }
-
-        public void Print()
-        {
-            Console.Write(string.Join(',', fishes));
+            BigInteger newFish = fishes[0];
+            fishes[0] = fishes[1];
+            fishes[1] = fishes[2];
+            fishes[2] = fishes[3];
+            fishes[3] = fishes[4];
+            fishes[4] = fishes[5];
+            fishes[5] = fishes[6];
+            fishes[6] = fishes[7];
+            fishes[7] = fishes[8];
+            fishes[8] = newFish;
+            fishes[6] += newFish;
         }
     }
 }

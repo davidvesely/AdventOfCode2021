@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Day08
 {
     public class Display
     {
-        private readonly string input;
         private HashSet<char>[] digits;
         private List<string> digitsRaw;
         private List<string> output;
 
         public Display(string input)
         {
-            this.input = input;
             digits = new HashSet<char>[10];
             ParseInput(input);
             ProcessDigits();

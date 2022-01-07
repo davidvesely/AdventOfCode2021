@@ -48,7 +48,7 @@ namespace QuadraticSolver
             {
                 return int.Parse(value);
             }
-            catch (Exception ex)
+            catch
             {
                 Console.WriteLine("Please enter a valid number");
                 Environment.Exit(0);
